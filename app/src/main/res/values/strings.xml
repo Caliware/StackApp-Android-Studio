@@ -17,6 +17,8 @@
     <string name="ok">Ok</string>
     
     <string name="push_error_full_stack">Stack is already full!</string>
+
+    <string name="stack_size_error_empty">Stack size must be greater than 0</string>
     
     <string name="stack_empty">Stack is empty...</string>
     

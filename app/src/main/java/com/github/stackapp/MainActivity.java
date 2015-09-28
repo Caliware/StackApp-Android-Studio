@@ -114,23 +114,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String input = changeStackSizeEditText.getText().toString();
-                if(validateInput(input, changeStackSizeEditText))
+                if(validateMaxInput(input, changeStackSizeEditText))
                 {
                     Integer newStackLimit = Integer.valueOf(input);
 
-                    if(stackLimit > newStackLimit)
+                    if (newStackLimit == 0)
                     {
-                        clearStack(true);
+                        errorPopUp(getString(R.string.stack_size_error_empty));
                     }
-                    else
-                    {
-                        actionTextView.setText(getString(R.string.changed_stack_size));
+                    else {
+
+
+                        if (stackLimit > newStackLimit) {
+                            clearStack(true);
+                        } else {
+                            actionTextView.setText(getString(R.string.changed_stack_size));
+                        }
+
+                        stackLimit = newStackLimit;
+                        stackSizeTextView.setText(getString(R.string.stack_size) + " " + stackLimit.toString());
+
                     }
 
-                    stackLimit = newStackLimit;
-                    stackSizeTextView.setText(getString(R.string.stack_size) + " " + stackLimit.toString());
 
                 }
+
             }
         });
         dialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -162,6 +170,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         return success;
     }
+
+    public Boolean validateMaxInput(String input, EditText editText) {
+
+        boolean success = false;
+
+        String regex = "^[0-9]*$";
+
+//		stackInputEditText.setError(null);
+
+        if (TextUtils.isEmpty(input) || !input.matches(regex)) {
+            editText.setError(getString(R.string.invalid_stack_input));
+            editText.requestFocus();
+        } else {
+
+           success = true;
+        }
+
+        return success;
+    }
+
 
     public Boolean pushStack(String input) {
 
