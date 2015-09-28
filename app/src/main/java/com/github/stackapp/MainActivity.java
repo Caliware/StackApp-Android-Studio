@@ -157,15 +157,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         boolean success = false;
 
-        int tmp = Integer.parseInt(input);
-
-        String tmpInput = String.valueOf(tmp);
-
         String regex = "^[0-9]{1}$";
 
 //		stackInputEditText.setError(null);
 
-        if (TextUtils.isEmpty(input) || !tmpInput.matches(regex)) {
+        if (TextUtils.isEmpty(input) || !input.matches(regex)) {
             editText.setError(getString(R.string.invalid_stack_input));
             editText.requestFocus();
         } else {
