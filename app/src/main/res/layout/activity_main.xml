@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_main_stack_size_textview"
         android:hint="@string/prompt_stack_input"
-        android:inputType="number">
+        android:inputType="number"
+        android:maxLength="1">
         
     </EditText>
     
